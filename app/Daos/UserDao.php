@@ -30,4 +30,9 @@ class UserDao {
     {
         $user->delete();
     }
+
+    public function findByEmail(string $email)
+    {
+        return User::where('email',$email)->first();
+    }
 }
