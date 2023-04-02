@@ -14,6 +14,11 @@ class AuthController extends Controller
     public function __construct(
         private UserDao $userDao
     ){}
+
+    public function user(Request $r) {
+      return $r->user();
+    }
+
     public function recoverPassword(Request $r)
     {
         $input = json_decode($r->getContent(), false);
