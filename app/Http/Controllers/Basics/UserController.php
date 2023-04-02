@@ -38,8 +38,6 @@ class UserController extends Controller
         $input = json_decode($request->getContent(), false);
         $user = new User();
         $user->name = $input->name;
-        $user->email = $input->email;
-        $user->password = Hash::make($input->password);
         $user->role = $input->role;
         $this->userDao->save($user);
     }
@@ -67,8 +65,6 @@ class UserController extends Controller
     {
         $input = json_decode($request->getContent(), false);
         $user->name = $input->name;
-        $user->email = $input->email;
-        $user->password = $input->password;
         $user->role = $input->role;
         $this->userDao->save($user);
     }
