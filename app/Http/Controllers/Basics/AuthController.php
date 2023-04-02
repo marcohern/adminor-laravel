@@ -18,7 +18,7 @@ class AuthController extends Controller
     {
         $input = json_decode($r->getContent(), false);
         $user = $this->userDao->findByEmail($input->email);
-        $user->remember_token = (string) Str::uuid();
+        if ($user->remember_token == null) $user->remember_token = (string) Str::uuid();
         $this->userDao->save($user);
 
         Mail::to($user)->queue(new PasswordRecoveryMail($user));
