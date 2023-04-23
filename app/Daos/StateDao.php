@@ -5,6 +5,7 @@ namespace App\Daos;
 use App\Models\State;
 use App\Models\Country;
 use Illuminate\Database\Eloquent\Collection;
+use stdClass;
 
 class StateDao {
 
@@ -13,16 +14,38 @@ class StateDao {
 
   }
 
-  private function listByCountryCode($code) : Collection
+  public function list($source) : Collection
   {
-    $country = $this->countryDao->find($code);
+    switch(gettype($source)) {
+      case "object":
+        return $this->listByObject($source);
+      case "integer":
+      case "double":
+      case "string":
+      default:
+        return $this->listByScalar($source);
+    }
+  }
+
+  private function listByScalar($source)
+  {
+    $country = $this->countryDao->find($source);
     return State::where('country_id',$country->id)->list();
+  }
+
+  private function listByObject($source)
+  {
+    if (is_a($source, Country::class)) {
+      return State::where('country_id',$source->id)->list();
+    }
+    return collect();
   }
 
   public function find($source) : ?State
   {
     switch(gettype($source)) {
       case "integer":
+      case "double":
         return $this->findById($source);
       default:
         return $this->findByIso3($source);
