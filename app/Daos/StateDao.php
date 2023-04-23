@@ -3,12 +3,20 @@
 namespace App\Daos;
 
 use App\Models\State;
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Collection;
 
 class StateDao {
-  public function list($countryId) : Collection
+
+  public function __construct(private CountryDao $countryDao)
   {
-    return State::where('country_id',$countryId)->list();
+
+  }
+
+  private function listByCountryCode($code) : Collection
+  {
+    $country = $this->countryDao->find($code);
+    return State::where('country_id',$country->id)->list();
   }
 
   public function find($source) : ?State
