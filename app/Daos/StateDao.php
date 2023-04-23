@@ -27,6 +27,17 @@ class StateDao {
     }
   }
 
+  public function find($source) : ?State
+  {
+    switch(gettype($source)) {
+      case "integer":
+      case "double":
+        return $this->findById($source);
+      default:
+        return $this->findByIso3($source);
+    }
+  }
+
   private function listByScalar($source)
   {
     $country = $this->countryDao->find($source);
@@ -39,17 +50,6 @@ class StateDao {
       return State::where('country_id',$source->id)->list();
     }
     return collect();
-  }
-
-  public function find($source) : ?State
-  {
-    switch(gettype($source)) {
-      case "integer":
-      case "double":
-        return $this->findById($source);
-      default:
-        return $this->findByIso3($source);
-    }
   }
 
   private function findById($id) : ?State
