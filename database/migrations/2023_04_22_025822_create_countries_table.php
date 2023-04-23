@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('iso2',2)->unique();
             $table->string('slug',64)->unique();
+            $table->decimal('lat');
+            $table->decimal('lng');
             $table->string('name');
-            $table->timestamps();
         });
     }
 
