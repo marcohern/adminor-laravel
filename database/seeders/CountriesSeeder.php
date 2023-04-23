@@ -14,8 +14,8 @@ class CountriesSeeder extends Seeder
     public function run(): void
     {
       DB::table('countries')->insert([
-        ['iso2' => 'us', 'slug' => 'usa'     , 'name' => 'United States'],
-        ['iso2' => 'co', 'slug' => 'colombia', 'name' => 'Colombia'],
+        ['id'=>1, 'iso2' => 'us', 'slug' => 'usa'     , 'name' => 'United States'],
+        ['id'=>2, 'iso2' => 'co', 'slug' => 'colombia', 'name' => 'Colombia'],
       ]);
     }
 }
