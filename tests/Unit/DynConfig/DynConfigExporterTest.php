@@ -11,12 +11,14 @@ class DynConfigExporterTest extends TestCase
 
   public function setUp(): void
   {
+    parent::setUp();
     $this->exporter = new DynConfigExporter();
   }
 
   public function tearDown(): void
   {
     $this->exporter = null;
+    parent::tearDown();
   }
 
   /**
