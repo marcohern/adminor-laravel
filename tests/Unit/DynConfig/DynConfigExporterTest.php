@@ -4,6 +4,7 @@ namespace Tests\Unit\DynConfig;
 
 use App\DynConfig\DynConfigExporter;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 class DynConfigExporterTest extends TestCase
 {
@@ -28,6 +29,17 @@ class DynConfigExporterTest extends TestCase
   {
     //Act
     $content = $this->exporter->export(['foo' => 'bar']);
+
+    //Verify
+    $this->assertEquals("<?php\nreturn array (\n  'foo' => 'bar',\n)\n?>", $content);
+  }
+
+  public function test_export_obj(): void
+  {
+    $object = new \stdClass;
+    $object->foo = "bar";
+    //Act
+    $content = $this->exporter->export($object);
 
     //Verify
     $this->assertEquals("<?php\nreturn array (\n  'foo' => 'bar',\n)\n?>", $content);

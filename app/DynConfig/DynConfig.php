@@ -20,4 +20,9 @@ class DynConfig
   {
     return $this->settings->$name;
   }
+
+  public function save(string $path)
+  {
+    $this->loader->save($path, $this);
+  }
 }
