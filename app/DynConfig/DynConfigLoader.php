@@ -4,11 +4,9 @@ namespace App\DynConfig;
 
 class DynConfigLoader
 {
-  public $exporter;
 
-  public function __construct(DynConfigExporter $exporter)
+  public function __construct(private DynConfigExporter $exporter)
   {
-    $this->exporter = $exporter;
   }
 
   public function load($path)
