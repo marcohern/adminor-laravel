@@ -21,6 +21,11 @@ class DynConfig
     return $this->settings->$name;
   }
 
+  public function load(string $path)
+  {
+    $this->settings = (object)$this->loader->load($path);
+  }
+
   public function save(string $path)
   {
     $this->loader->save($path, $this);

@@ -39,4 +39,23 @@ class DynConfigTest extends TestCase
     $this->dynConfig->hello = "world";
     $this->assertEquals("world", $this->dynConfig->hello);
   }
+
+  public function test_load(): void
+  {
+    $this->dynConfig->load("tests/Files/settings.php");
+    $this->assertEquals("bar", $this->dynConfig->foo);
+  }
+
+  public function test_set_siteheaders(): void
+  {
+    $this->dynConfig->title = "The Title";
+    $this->dynConfig->subtitle = "The Subtitle";
+    $this->dynConfig->logoUrl = "https://www.images.com/logo.jpg";
+    $this->dynConfig->logoBwUrl = "https://www.images.com/logo-bw.jpg";
+
+    $this->assertEquals("The Title", $this->dynConfig->title);
+    $this->assertEquals("The Subtitle", $this->dynConfig->subtitle);
+    $this->assertEquals("https://www.images.com/logo.jpg", $this->dynConfig->logoUrl);
+    $this->assertEquals("https://www.images.com/logo-bw.jpg", $this->dynConfig->logoBwUrl);
+  }
 }
