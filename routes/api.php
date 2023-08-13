@@ -21,6 +21,7 @@ Route::middleware(['auth:api'])->group(function () {
   Route::resource('users', UserController::class);
 
   Route::get ('/headers'         , [HeadersConfigController::class, 'index']);
+  Route::post('/headers'         , [HeadersConfigController::class, 'create']);
   Route::post('/recover-password', [AuthController::class         , 'recoverPassword']);
   Route::get ('/user'            , [AuthController::class         , 'user']);
 });

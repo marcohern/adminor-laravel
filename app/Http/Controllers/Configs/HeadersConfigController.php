@@ -16,4 +16,12 @@ class HeadersConfigController extends Controller
     {
       return $this->headers->get();
     }
+
+    public function create(Request $r)
+    {
+      $input = $r->collect();
+      $this->headers->setTitle($input['title']);
+      $this->headers->setSubtitle($input['subtitle']);
+      $this->headers->save();
+    }
 }

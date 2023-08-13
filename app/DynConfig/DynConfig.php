@@ -28,6 +28,6 @@ class DynConfig
 
   public function save(string $path)
   {
-    $this->loader->save($path, $this);
+    $this->loader->save($path, $this->settings);
   }
 }

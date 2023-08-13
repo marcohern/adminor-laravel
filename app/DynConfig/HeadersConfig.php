@@ -36,7 +36,7 @@ class HeadersConfig
     return $this->config->subtitle;
   }
 
-  public function setSubitle(string $subtitle): void
+  public function setSubtitle(string $subtitle): void
   {
     $this->config->subtitle = $subtitle;
   }
