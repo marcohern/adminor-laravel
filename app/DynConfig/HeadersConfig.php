@@ -2,11 +2,23 @@
 
 namespace App\DynConfig;
 
+use Illuminate\Database\Eloquent\Collection;
+
 class HeadersConfig
 {
   public function __construct(private DynConfig $config)
   {
     $this->config->load("site/headers.php");
+  }
+
+  public function get()
+  {
+    return collect([
+      'title' => $this->getTitle(),
+      'subtitle' => $this->getSubtitle(),
+      'logoUrl' => $this->getLogoUrl(),
+      'logoBwUrl' => $this->getLogoBwUrl(),
+    ]);
   }
 
   public function getTitle(): string

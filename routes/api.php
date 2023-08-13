@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Basics\AuthController;
 use App\Http\Controllers\Basics\UserController;
+use App\Http\Controllers\Configs\HeadersConfigController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::resource('users', UserController::class);
+  Route::resource('users', UserController::class);
 
-    Route::post('/recover-password', [AuthController::class, 'recoverPassword']);
-  Route::get ('/user'            , [AuthController::class, 'user']);
+  Route::get ('/headers'         , [HeadersConfigController::class, 'index']);
+  Route::post('/recover-password', [AuthController::class         , 'recoverPassword']);
+  Route::get ('/user'            , [AuthController::class         , 'user']);
 });
-
-
