@@ -29,6 +29,26 @@ class HeadersConfig
     $this->config->subtitle = $subtitle;
   }
 
+  public function getLogoUrl(): string
+  {
+    return $this->config->logoUrl;
+  }
+
+  public function setLogoUrl(string $logoUrl): void
+  {
+    $this->config->logoUrl = $logoUrl;
+  }
+
+  public function getLogoBwUrl(): string
+  {
+    return $this->config->logoBwUrl;
+  }
+
+  public function setLogoBwUrl(string $logoBwUrl): void
+  {
+    $this->config->logoBwUrl = $logoBwUrl;
+  }
+
   public function save()
   {
     $this->config->save("site/headers.php");
