@@ -24,4 +24,18 @@ class HeadersConfigController extends Controller
       $this->headers->setSubtitle($input['subtitle']);
       $this->headers->save();
     }
+
+    public function logo(Request $r)
+    {
+      $path = $r->file('logo')->storeAs('logo','logo');
+      $this->headers->setLogoUrl($path);
+      $this->headers->save();
+    }
+
+    public function logobw(Request $r)
+    {
+      $path = $r->file('logobw')->storeAs('logo','logobw');
+      $this->headers->setLogoUrl($path);
+      $this->headers->save();
+    }
 }
